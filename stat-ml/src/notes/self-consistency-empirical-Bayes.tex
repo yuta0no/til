@@ -1,0 +1,48 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+
+\section{Self-Consistency of Empirical Bayes for Exponential Family}
+
+モデルがハイパーパラメータ\(\eta \in \R^k\)を持つ事前分布\(p(x \mid \eta)\)および尤度関数\(p(y \mid x)\)で与えられる場合について、ハイパーパラメータを経験ベイズ法によって推定することを考える。
+ただし、事前分布は指数分布族で与えられるとする。
+すなわち、
+\begin{equation}
+  p(x \mid \eta) = h(x) \exp(\eta^\T \bf{T}(x) - A(\eta))
+\end{equation}
+であるとする。
+
+まず、\(\int p(x \mid \eta) dx = 1\)より
+\begin{equation}
+  A(\eta) = \log \int h(x) \exp(\eta^T \bf{T}(x)) dx
+\end{equation}
+であるから両辺微分して、
+\begin{align}
+  \nabla_\eta A(\eta) &= \frac{h(x)\exp(\eta^\T \bf{T}(x)) \bf{T}(x)dx}{h(x)\exp(\eta^\T \bf{T}(x))dx} \\
+  &= h(x)\exp(\eta^\T \bf{T}(x) - A(\eta)) \bf{T}(x)dx \\
+  &= \mathbb{E}_{p(x\mid \eta)} \left[ \bf{T} \right]  \label{eq:exp-sufficient-statistic}
+\end{align}
+となる。
+
+次に、経験ベイズ法では周辺尤度\(L(\eta) = p(y \mid \eta) = \int p(y \mid x) p(x \mid \eta) dx\)を\(\eta\)について最大化するから、経験ベイズ推定値\(\hat{\eta}\)について、
+\begin{equation}
+  \left.\nabla_\eta L(\eta)\right|_{\eta=\hat{\eta}} = \bf{0}
+\end{equation}
+が成り立つ。
+すなわち、
+\begin{equation}
+  \int p(y\mid x) h(x) \exp(\eta^T \bf{T}(x) - A(\hat{\eta})) (\bf{T}(x) - \left.\nabla_\eta A(\eta)\right|_{\eta=\hat{\eta}}) dx = \bf{0}
+\end{equation}
+である。
+ここに、式\eqref{eq:exp-sufficient-statistic}を代入すると、
+\begin{equation}
+  \int p(y\mid x) h(x) \exp(\eta^T \bf{T}(x) - A(\hat{\eta})) (\bf{T}(x) - \left.\mathbb{E}_{p(x\mid \hat{\eta})} \left[\bf{T}(x)\right]\right|_{\eta=\hat{\eta}}) dx = \bf{0}
+\end{equation}
+となる。
+両辺を\(\int p(x \mid \eta) p(y \mid x) dx\)で割って整理することで、以下の等式を得る。
+\begin{equation}
+  \mathbb{E}_{p(x \mid y, \hat{\eta})} \left[ \bf{T}(x) \right] = \mathbb{E}_{p(x \mid \hat{\eta})} \left[ \bf{T}(x) \right]
+\end{equation}
+
+これは事前分布が指数分布族で与えられる場合における経験ベイズ推定量は、事前分布における十分統計量の期待値と事後分布における十分統計量の期待値を等しくさせるということを意味する。
+\end{document}

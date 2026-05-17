@@ -1,0 +1,167 @@
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{tcolorbox}
+
+
+% symbols
+\def\Real{\mathbb{R}}
+\def\R{\mathbb{R}}
+\def\T{\mathsf{T}}
+\def\graph{\mathcal{G}}
+\def\nodes{\mathcal{V}}
+\def\edges{\mathcal{E}}
+\def\adj{\mathbf{A}}
+
+\def\query{\mathcal{Q}}
+\def\unlabeled{\mathcal{U}}
+\def\labeled{\mathcal{L}}
+\def\classnum{K}
+\def\uncertainty{u}
+\def\epi{\mathrm{epi}}
+\def\alea{\mathrm{alea}}
+\def\total{\mathrm{total}}
+\def\gt{\mathrm{gt}}
+\def\confidence{\mathrm{conf}}
+\def\T{\mathsf{T}}
+\def\LBRG{\mathrm{LBRG}}
+
+\newcommand{\matr}[1]{\mathbf{#1}}
+\newcommand{\vect}[1]{\bm{#1}}
+\newcommand{\normal}[0]{\mathcal{N}}
+\newcommand{\prob}[1]{\mathbb P\left[#1 \right]}
+
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
+
+% theorem styles
+\usepackage{xcolor}
+\theoremstyle{definition}
+\newtheorem{thm}{Theorem}
+\newtheorem*{thm*}{Theorem}
+\newtheorem{dfn}{Definition}
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{assumption}{Assumption}
+\newtheorem*{assumption*}{Assumption}
+\newtheorem{remark}{Remark}
+\newtheorem*{remark*}{Remark}
+\renewcommand{\proofname}{\textbf{Proof}}
+
+\tcbuselibrary{theorems,skins,breakable}
+
+\tcolorboxenvironment{thm}{
+    enhanced jigsaw,
+    colframe=black,
+    interior hidden,
+    breakable,
+    before skip=10pt,
+    after skip=10pt
+}
+
+\tcolorboxenvironment{thm*}{
+    enhanced jigsaw,
+    colframe=black,
+    interior hidden,
+    breakable,
+    before skip=10pt,
+    after skip=10pt
+}
+
+\tcolorboxenvironment{dfn}{
+    enhanced jigsaw,
+    colframe=black,
+    interior hidden,
+    breakable,
+    before skip=10pt,
+    after skip=10pt
+}
+
+\tcolorboxenvironment{proposition}{
+    enhanced jigsaw,
+    colframe=black,
+    interior hidden,
+    breakable,
+    before skip=10pt,
+    after skip=10pt
+}
+
+% \tcolorboxenvironment{lemma}{
+%     enhanced jigsaw,
+%     colframe=black,
+%     interior hidden,
+%     breakable,
+%     before skip=10pt,
+%     after skip=10pt
+% }
+
+\tcolorboxenvironment{assumption}{
+    enhanced jigsaw,
+    colframe=black,
+    interior hidden,
+    breakable,
+    before skip=5pt,
+    after skip=5pt,
+    sharp corners,
+    boxrule=0pt,
+    borderline west={1pt}{0pt}{black},
+    borderline west={1pt}{3pt}{black},
+}
+
+\tcolorboxenvironment{assumption*}{
+    enhanced jigsaw,
+    colframe=black,
+    interior hidden,
+    breakable,
+    before skip=5pt,
+    after skip=5pt,
+    sharp corners,
+    boxrule=0pt,
+    borderline west={1pt}{0pt}{black},
+    borderline west={1pt}{3pt}{black},
+}
+
+% \tcolorboxenvironment{remark}{
+%     enhanced jigsaw,
+%     colframe=black,
+%     interior hidden,
+%     breakable,
+%     before skip=10pt,
+%     after skip=10pt
+% }
+
+% \tcolorboxenvironment{remark*}{
+%     enhanced jigsaw,
+%     colframe=black,
+%     interior hidden,
+%     breakable,
+%     before skip=10pt,
+%     after skip=10pt
+% }
+
+
+\makeatletter
+\renewenvironment{proof}[1][\proofname]{\par
+  \pushQED{\qed}%
+  \normalfont \topsep6\p@\@plus6\p@\relax
+  \trivlist
+  \item\relax
+  {\bfseries
+  #1\@addpunct{.}}\hspace\labelsep\ignorespaces
+}{%
+  \popQED\endtrivlist\@endpefalse
+}
+\makeatother
+
+\makeatletter
+\newenvironment{subproof}[1][Proof]{\par
+  \pushQED{\qed}%
+  \renewcommand{\qedsymbol}{\textcolor{gray}{$\blacksquare$}}
+  \normalfont \topsep6\p@\@plus6\p@\relax
+  \trivlist
+  \item\relax
+  {\bfseries
+  #1\@addpunct{.}}\hspace\labelsep\ignorespaces
+}{%
+  \popQED\endtrivlist\@endpefalse
+}
+\makeatother
